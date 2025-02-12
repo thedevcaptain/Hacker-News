@@ -1,41 +1,39 @@
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin'); // Importa il plugin
 
 module.exports = {
-    entry: './src/index.js',  // File di ingresso per il bundle
+    entry: './src/index.js', // Percorso del tuo file JS principale
     output: {
         filename: 'bundle.js',
-        path: path.resolve(__dirname, 'dist'), // Cartella di output per il bundle.js
-        publicPath: '/', // Aggiungi questa riga per gestire correttamente il percorso in GitHub Pages
+        path: path.resolve(__dirname, 'dist'), // Uscita nella cartella dist
     },
-    mode: 'development', // Modalità di sviluppo
+    mode: 'development',
     module: {
         rules: [
             {
-                test: /\.js$/,  // Gestisci i file JS
+                test: /\.js$/,
                 exclude: /node_modules/,
                 use: {
-                    loader: 'babel-loader',  // Usa Babel per transpile il codice JS
+                    loader: 'babel-loader',
                     options: {
-                        presets: ['@babel/preset-env'], // Preset per ES6+
+                        presets: ['@babel/preset-env'],
                     },
                 },
             },
             {
-                test: /\.css$/,  // Gestisci i file CSS
-                use: ['style-loader', 'css-loader'], // Usa style-loader e css-loader
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader'],
             },
         ],
     },
     devServer: {
-        static: path.resolve(__dirname, 'dist'),  // Fai partire il server sulla cartella dist
-        open: true,  // Apre il browser quando parte il server
-        port: 9000,  // Porta del server
+        static: path.resolve(__dirname, 'dist'),
+        open: true,
+        port: 9000,
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: './src/index.html',  // Usa il file index.html dalla cartella src
-            filename: 'index.html',  // Genera index.html nella cartella dist
+            template: './src/index.html', // Usa il file src/index.html come template
         }),
     ],
 };
