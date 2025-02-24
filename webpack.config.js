@@ -6,6 +6,7 @@ module.exports = {
     output: {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist'), // Uscita nella cartella dist
+        publicPath: 'https://scantalupo.github.io/Hacker-News/' ,
     },
     mode: 'development',
     module: {
@@ -22,10 +23,11 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: ['style-loader', 'css-loader'],
+                use: ['style-loader', 'css-loader'],  // Webpack gestisce il CSS
             },
         ],
     },
+    
     devServer: {
         static: path.resolve(__dirname, 'dist'),
         open: true,
