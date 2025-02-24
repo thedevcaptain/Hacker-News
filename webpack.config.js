@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 
 module.exports = {
@@ -6,13 +7,13 @@ module.exports = {
     output: {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist'), // Uscita nella cartella dist
-        publicPath: 'https://scantalupo.github.io/Hacker-News/' ,
+        publicPath: 'https://scantalupo.github.io/Hacker-News/',
     },
     mode: 'development',
     module: {
         rules: [
             {
-                test: /\.js$/,
+                test: /\.js$/,  // Regola per JavaScript
                 exclude: /node_modules/,
                 use: {
                     loader: 'babel-loader',
@@ -22,12 +23,11 @@ module.exports = {
                 },
             },
             {
-                test: /\.css$/,
-                use: ['style-loader', 'css-loader'],  // Webpack gestisce il CSS
+                test: /\.css$/,  // Regola per CSS
+                use: [MiniCssExtractPlugin.loader, 'css-loader'],
             },
         ],
     },
-    
     devServer: {
         static: path.resolve(__dirname, 'dist'),
         open: true,
@@ -37,5 +37,6 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: './src/index.html', // Usa il file src/index.html come template
         }),
+        new MiniCssExtractPlugin({ filename: 'style.css' }),  // Nome del file CSS estratto
     ],
 };
