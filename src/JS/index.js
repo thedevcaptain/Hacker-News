@@ -1,6 +1,6 @@
 import { fetchNewsIds, fetchNewsDetails } from './api.js';
 import { renderNews } from './ui.js';
-import './style.css';
+import '../CSS/style.css';
 
 document.addEventListener('DOMContentLoaded', async () => {
     const container = document.getElementById('news-container');
