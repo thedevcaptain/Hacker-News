@@ -7,9 +7,9 @@ module.exports = {
     output: {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist'),
-        publicPath: '', // Stringa vuota per GitHub Pages
+        publicPath: '',  // 🔹 Assicura che i file vengano trovati su GitHub Pages
     },
-    mode: 'production', // Usa production per il deploy su Pages
+    mode: 'production',
     module: {
         rules: [
             {
@@ -28,16 +28,11 @@ module.exports = {
             },
         ],
     },
-    devServer: {
-        static: path.resolve(__dirname, 'dist'),
-        open: true,
-        port: 9000,
-    },
     plugins: [
         new HtmlWebpackPlugin({
             template: './src/index.html',
-            filename: 'index.html', // Assicura che venga generato correttamente
+            filename: 'index.html', // 🔹 Crea l'index.html direttamente in dist
         }),
-        new MiniCssExtractPlugin({ filename: 'style.css' }),
+        new MiniCssExtractPlugin({ filename: 'style.css' }), // 🔹 Salva style.css nella root di dist
     ]
 };
