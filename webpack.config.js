@@ -6,10 +6,10 @@ module.exports = {
     entry: './src/JS/index.js', 
     output: {
         filename: 'bundle.js',
-        path: path.resolve(__dirname, 'dist'), 
-        publicPath: './',
+        path: path.resolve(__dirname, 'dist'),
+        publicPath: '', // Stringa vuota per GitHub Pages
     },
-    mode: 'development',
+    mode: 'production', // Usa production per il deploy su Pages
     module: {
         rules: [
             {
@@ -23,7 +23,7 @@ module.exports = {
                 },
             },
             {
-                test: /\.css$/,  // Regola per CSS
+                test: /\.css$/,  
                 use: [MiniCssExtractPlugin.loader, 'css-loader'],
             },
         ],
@@ -35,7 +35,9 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: './src/index.html', 
+            template: './src/index.html',
+            filename: 'index.html', // Assicura che venga generato correttamente
         }),
-        new MiniCssExtractPlugin({ filename: 'style.css' }),  ]
+        new MiniCssExtractPlugin({ filename: 'style.css' }),
+    ]
 };
