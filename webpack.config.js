@@ -7,7 +7,7 @@ module.exports = {
     output: {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist'), 
-        publicPath: 'https://scantalupo.github.io/Hacker-News/',
+        publicPath: './',
     },
     mode: 'development',
     module: {
