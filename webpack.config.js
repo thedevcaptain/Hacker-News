@@ -3,17 +3,17 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 
 module.exports = {
-    entry: './src/JS/index.js', 
+    entry: './src/JS/index.js',
     output: {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist'),
-        publicPath: '',  // 🔹 Assicura che i file vengano trovati su GitHub Pages
+        publicPath: '',
     },
     mode: 'production',
     module: {
         rules: [
             {
-                test: /\.js$/,  
+                test: /\.js$/,
                 exclude: /node_modules/,
                 use: {
                     loader: 'babel-loader',
@@ -23,7 +23,7 @@ module.exports = {
                 },
             },
             {
-                test: /\.css$/,  
+                test: /\.css$/,
                 use: [MiniCssExtractPlugin.loader, 'css-loader'],
             },
         ],
@@ -31,8 +31,8 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: './src/index.html',
-            filename: 'index.html', // 🔹 Crea l'index.html direttamente in dist
+            filename: 'index.html',
         }),
-        new MiniCssExtractPlugin({ filename: 'style.css' }), // 🔹 Salva style.css nella root di dist
-    ]
+        new MiniCssExtractPlugin({ filename: 'style.css' }),
+    ],
 };
